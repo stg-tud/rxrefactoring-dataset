@@ -1,0 +1,13 @@
+﻿/war/mysql/target/
+/core/target/
+/war/gae/target/
+/war/bae/target/
+/war/target/
+/war/mysql/target/
+/war/h2/target/
+/war/src/main/webapp/WEB-INF/lib/
+
+.idea/
+
+.DS_Store
+/target/

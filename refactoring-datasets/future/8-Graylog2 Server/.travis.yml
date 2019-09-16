@@ -1,0 +1,15 @@
+---
+language: java
+jdk:
+- oraclejdk7
+- openjdk7
+before_install: ./install-syslog4j-jar.sh
+notifications:
+  campfire:
+    on_success: change
+    on_failure: always
+    rooms:
+      secure: |-
+        NwOeFYH729EO9isap7y9rTvxl26Og1HYVMvqzzTpA6x9hI/1VZ78iKYQuaca
+        vX64upgHP+hrNVWqM9mxBmdhctndK/r7mK6/RoMr9x1EFQRtzXOBm8HXSnxk
+        l6Vdx0VAWZylzUkUL+x6GKpa3Lrtg4Bz76xlypLFYOp04C0TCjQ=

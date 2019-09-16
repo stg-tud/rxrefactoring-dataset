@@ -1,0 +1,13 @@
+language: java
+notifications:
+  email:
+    - matthias@thinkaurelius.com
+    - marko@thinkaurelius.com
+    - dalaro@hopcount.org
+jdk:
+  - oraclejdk7
+  - openjdk7
+
+branches:
+  only:
+    - master

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter version="5.0"
+         xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd http://www.w3.org/1999/xlink http://www.docbook.org/xml/5.0/xsd/xlink.xsd"
+         xml:base="../" xml:id="integration" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:ns="http://docbook.org/ns/docbook">
+  <title>Integration</title>
+
+  <section xml:id="integrationOverview">
+    <title>Overview</title>
+
+    <para>OptaPlanner's input and output data (the planning problem and the best solution) are plain old JavaBeans
+    (POJO's), so integration with other Java technologies is straightforward. For example:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>To read a planning problem from the database (and store the best solution in it), annotate the domain
+        POJO's with JPA annotations.</para>
+      </listitem>
+
+      <listitem>
+        <para>To read a planning problem from an XML file (and store the best solution in it), annotate the domain
+        POJO's with XStream or JAXB annotations.</para>
+      </listitem>
+
+      <listitem>
+        <para>To expose the Solver as a REST Service that reads the planning problem and responds with the best
+        solution, annotate the domain POJO's with XStream or JAXB annotations and hook the <literal>Solver</literal> in
+        Camel or RESTEasy.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section xml:id="integrationWithPersistentStorage">
+    <title>Persistent storage</title>
+
+    <section xml:id="integrationWithJpaAndHibernate">
+      <title>Database: JPA and Hibernate</title>
+
+      <para>Enrich the domain POJO's (solution, entities and problem facts) with JPA annotations to store them in a
+      database.</para>
+
+      <note>
+        <para>Do not confuse JPA's <literal>@Entity</literal> annotation with OptaPlanner's
+        <literal>@PlanningEntity</literal> annotation. They can appear both on the same class.</para>
+      </note>
+    </section>
+
+    <section xml:id="integrationWithXStream">
+      <title>XML: XStream</title>
+
+      <para>Enrich the domain POJO's (solution, entities and problem facts) with XStream annotations to serialize them
+      to/from XML.</para>
+    </section>
+
+    <section xml:id="integrationWithJaxb">
+      <title>XML: JAXB</title>
+
+      <para>Enrich the domain POJO's (solution, entities and problem facts) with JAXB annotations to serialize them
+      to/from XML.</para>
+    </section>
+  </section>
+
+  <section xml:id="integrationWithSoaAndEsb">
+    <title>SOA and ESB</title>
+
+    <section xml:id="integrationWithCamel">
+      <title>Camel and Karaf</title>
+
+      <para><link xlink:href="http://camel.apache.org/">Camel</link> is an enterprise integration framework which
+      includes support for OptaPlanner (starting from Camel 2.13). It can expose OptaPlanner as a REST service, a SOAP
+      service, a JMS service, ...</para>
+
+      <para><link xlink:href="http://camel.apache.org/optaplanner.html">Read the documentation for the camel-optaplanner
+      component.</link> That component works in Karaf too.</para>
+    </section>
+  </section>
+
+  <section xml:id="integrationWithOtherEnvironments">
+    <title>Other environments</title>
+
+    <section xml:id="integrationWithOSGi">
+      <title>OSGi</title>
+
+      <para>OptaPlanner's jars include OSGi metadata to function properly in an OSGi environment too.</para>
+
+      <note>
+        <para>OptaPlanner does <emphasis>not</emphasis> require OSGi. It works perfectly fine in a normal Java
+        environment too.</para>
+      </note>
+    </section>
+
+    <section xml:id="integrationWithAndroid">
+      <title>Android</title>
+
+      <para>OptaPlanner does not work out-of-the-box on Android yet, because it is not a complete JVM. For more
+      information and workarounds, <link xlink:href="https://issues.jboss.org/browse/PLANNER-146">see this
+      issue</link>.</para>
+    </section>
+  </section>
+
+  <section xml:id="integrationWithHumanPlanners">
+    <title>Integration with human planners (politics)</title>
+
+    <para>A good OptaPlanner implementation beats any good human planner for non-trivial datasets. Many human planners
+    fail to accept this, often because they feel threatened by an automated system.</para>
+
+    <para>But despite that, OptaPlanner can benefit from a human planner as supervisor:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">The human planner defines and validates the score function of
+        OptaPlanner.</emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Some examples expose a <literal>*Parametrization</literal> object, which defines the weight for each
+            score constraint. The human planner can then tweak those weights at runtime.</para>
+          </listitem>
+
+          <listitem>
+            <para>When the business changes, the score function often needs to change too. The human planner can notify
+            the developers to add, change or remove score constraints.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">The human planner is always in control of OptaPlanner.</emphasis></para>
+
+        <itemizedlist>
+          <listitem>
+            <para>As shown in the course scheduling example, the human planner can lock 1 or more planning variables to
+            a specific planning value and make those immovable. Because they are <link
+            linkend="immovablePlanningEntities">immovable</link>, OptaPlanner does not change them: it optimizes the
+            planning around the enforcements made by the human. If the human planner locks all planning variables,
+            he/she sidelines OptaPlanner completely.</para>
+          </listitem>
+
+          <listitem>
+            <para>In a prototype implementation, the human planner might use this occasionally. But as the
+            implementation matures, it must become obsolete. But do keep the feature alive: as a reassurance for the
+            humans. Or in case that one day the business changes dramatically before the score constraints can be
+            adjusted.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+
+    <para>Therefore, it's often a good idea to involve the human planner in your project.</para>
+  </section>
+</chapter>

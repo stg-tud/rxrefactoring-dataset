@@ -1,0 +1,8 @@
+id,numberOfRefs,buildTools,projectUrls,projectNames,revisionCommit,numberOfASTs,stars
+9056142,7,gradle,https://github.com/puniverse/quasar,puniverse/quasar,4354a2614e8be514018bae4453dc2441d026cb6d,176,2647
+1331579,10,maven,https://github.com/cakeframework/cake,cakeframework/cake,bb3c480a537639601dd7603d180de02a88cef89f,2537,1
+9752928,54,eclipse,https://github.com/amharrison/commonreality,amharrison/commonreality,a48273dce152351cc959a37f6be16454026c39d0,2013,1
+3667526,18,maven,https://github.com/spullara/java-future-jdk8,spullara/java-future-jdk8,f65bc5a8920db149ade4c055417a6b653a0542d9,220,17
+2372900,12,ant|eclipse|maven,https://github.com/picpromusic/incubator,picpromusic/incubator,98bf0ec49a7bd301e27b52a8190102886b9f5079,900,0
+2247696,2,eclipse|maven|ant,https://github.com/hjohn/MediaSystem,hjohn/MediaSystem,2e39ab4c6f6dbebfe2934e90b546b98f4c371473,14,15
+11551617,15,maven,https://github.com/nurkiewicz/async-retry,nurkiewicz/async-retry,92ab36f73278d64701f211045fec29a71c40585f,665,298

@@ -1,0 +1,12 @@
+# Ignore Everything
+/*
+/*/
+
+# Except These
+!/src/
+!/macapp/
+!/.gitignore
+!/build.xml
+!/launch4j.xml
+!/LICENSE
+!/README.md

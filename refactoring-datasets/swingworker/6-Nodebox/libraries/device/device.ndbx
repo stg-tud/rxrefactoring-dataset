@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ndbx type="file" uuid="a779a96c-efec-4fbd-a804-7c12072bcb74">
+    <link href="java:nodebox.function.DeviceFunctions" rel="functions"/>
+    <node description="Real time nodes." name="root" prototype="core.network" renderedChild="mouse_position">
+        <node category="device" description="Buffer incoming points" function="device/bufferPoints" image="generic.png" name="buffer_points" outputRange="list" outputType="point" position="1.00,1.00">
+            <port name="point" range="value" type="point" value="0.00,0.00" widget="point"/>
+            <port name="size" range="value" type="int" value="100" widget="int"/>
+            <port name="state" range="value" type="state" widget="none"/>
+        </node>
+        <node category="device" description="Get the most recent mouse position" function="device/mousePosition" image="mouse_position.png" name="mouse_position" outputType="point" position="1.00,2.00">
+            <port name="context" range="value" type="context" widget="none"/>
+        </node>
+        <node category="device" description="Receive messages from OSC" function="device/receiveOSC"
+              image="receive_osc.png" name="receive_osc" position="1.00,3.00" outputType="string" outputRange="list">
+            <port name="device_name" type="string"
+                  description="The osc device to listen to." value="osc1"/>
+            <port name="address_prefix" type="string"
+                  description="The prefix of the addresses to receive the messages on." value="/"/>
+            <port name="arguments" type="string"
+                  description="The names of the OSC messages' arguments, delimited by ','"/>
+            <port name="context" type="context"
+                  description="The internal execution context."/>
+        </node>
+        <node category="device" description="Send messages over OSC" function="device/sendOSC" image="send_osc.png" name="send_osc" position="1.00,4.00">
+            <port name="address" range="value" type="string" value="" widget="string"/>
+            <port name="port" range="value" type="int" value="9999" widget="int"/>
+            <port name="route" range="value" type="string" value="" widget="string"/>
+            <port name="arguments" range="list" type="list" widget="none"/>
+        </node>
+        <node category="device" description="Audio analysis with Minim" function="device/audioAnalysis"
+              image="audio_analysis.png" name="audio_analysis" position="1.00,1.00" outputType="float" outputRange="list">
+            <port name="device_name" type="string"
+                  description="The audio device." value="audio1"/>
+        	<port name="channel" label="Channel" range="value" type="string" value="mix" widget="menu" description="The channel to return values from.">
+		        <menu key="left" label="Left"/>
+		        <menu key="right" label="Right"/>
+		        <menu key="mix" label="Mix"/>
+		    </port>
+            <port name="averages" type="int"
+                  description="The number of averages to take." value="0"/>
+            <port name="context" type="context"
+                  description="The internal execution context."/>
+        </node>
+        <node category="device" description="Logarithmic FFT analysis with Minim" function="device/audioLogAvg"
+              image="audio_log_avg.png" name="audio_log_avg" position="1.00,1.00" outputType="float" outputRange="list">
+            <port name="device_name" type="string"
+                  description="The audio device." value="audio1"/>
+        	<port name="channel" label="Channel" range="value" type="string" value="mix" widget="menu" description="The channel to return values from.">
+		        <menu key="left" label="Left"/>
+		        <menu key="right" label="Right"/>
+		        <menu key="mix" label="Mix"/>
+		    </port>
+            <port name="baseFreq" type="int" description="The minimum frequency to include." value="22"/>
+            <port name="bandsPerOctave" type="int" description="The number of bands per octave." value="3"/>
+            <port name="context" type="context"
+                  description="The internal execution context."/>
+        </node>
+        <node category="device" description="Audio wave with Minim" function="device/audioWave"
+              image="audio_wave.png" name="audio_wave" position="1.00,1.00" outputType="float" outputRange="list">
+            <port name="device_name" type="string"
+                  description="The audio device." value="audio1"/>
+            <port name="context" type="context"
+                  description="The internal execution context."/>
+        </node>
+        <node category="device" description="Beat Detect with Minim" function="device/beatDetect"
+              image="beat_detect.png" name="beat_detect" position="1.00,1.00" outputType="data">
+            <port name="device_name" type="string"
+                  description="The audio device." value="audio1"/>
+            <port name="context" type="context"
+                  description="The internal execution context."/>
+        </node>
+    </node>
+</ndbx>
