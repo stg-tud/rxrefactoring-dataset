@@ -54,7 +54,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <metrics.version>3.0.0</metrics.version>
-        <jackson.version>2.3.0</jackson.version>
+        <jackson.version>2.12.1</jackson.version>
         <jersey.version>2.5</jersey.version>
         <apache-directory-version>1.0.0-M20</apache-directory-version>
         <surefire.version>2.13</surefire.version>
