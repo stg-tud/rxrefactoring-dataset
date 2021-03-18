@@ -94,7 +94,7 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>0.90.10</version>
+            <version>6.8.13</version>
             <!-- fuckeria jersey. really. do not repackage stuff under different groupids
               TODO we really do not want to do this, because whenever someone decides to use lucene-expressions WE FOOKED.
              -->
